@@ -1,73 +1,142 @@
-# React + TypeScript + Vite
+# 🌤️ Weather Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **Weather Analytics Dashboard** built with **React**, **TypeScript**, **Redux Toolkit**, **Firebase Authentication**, and **Recharts**.  
+It provides real-time weather insights, multi-city tracking, favorites, and detailed analytics with a clean UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Features
 
-## React Compiler
+### 🔐 Authentication
+- Google Sign-In using Firebase
+- Secure protected routes
+- Persistent login state
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🏙️ Multi-City Dashboard
+- Track multiple cities at once
+- Real-time updates (data refreshed every 60s)
+- Cached responses to reduce API calls
+- Clean summary cards for each city including:
+  - Temperature
+  - Condition icon
+  - Humidity
+  - Wind speed
+  - Last updated time
 
-## Expanding the ESLint configuration
+### ⭐ Favorites
+- Add / remove favorite cities
+- Favorites persist per user
+- Dedicated favorites page
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Analytics & Charts
+- Hourly temperature line chart
+- 7-day temperature bar chart
+- Responsive & interactive charts (Recharts)
+- Smooth UX on desktop & mobile
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🔍 City Search
+- Debounced city search
+- Add cities dynamically to dashboard
+- Prevents duplicates automatically
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### ⚙️ Settings
+- Unit toggle (°C / °F)
+- Instant UI updates without refetching
+- Global state powered by Redux
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 📱 Responsive UI
+- Mobile-friendly layout
+- Grid adapts to screen size
+- Smooth hover & transition effects
+
+### 🧠 Advanced Features (Bonus Points)
+- ✔ Google Authentication
+- ✔ Real-time data fetching
+- ✔ Data freshness < 60 seconds
+- ✔ API caching layer
+- ✔ Redux global state management
+- ✔ Typed hooks (TypeScript best practices)
+- ✔ Clean architecture
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Redux Toolkit
+- Recharts
+
+**Backend / Services**
+- WeatherAPI.com
+- Firebase Authentication
+
+---
+
+## 📁 Project Structure
+```
+src/
+│
+├── app/ # Redux store setup
+├── components/ # UI components
+│ ├── Auth/
+│ ├── Dashboard/
+│ ├── Charts/
+│ ├── Common/
+│ └── Layout/
+│
+├── features/ # Redux slices
+│ ├── auth/
+│ ├── weather/
+│ ├── favorites/
+│ └── settings/
+│
+├── hooks/ # Custom hooks
+├── pages/ # Route pages
+├── utils/ # Helpers & formatters
+├── firebase.ts # Firebase config
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Environment Variables
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Create a `.env` file in the root directory:
+
+```env
+VITE_WEATHER_API_KEY=your_weatherapi_key
+
+VITE_FIREBASE_API_KEY=your_firebase_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_APP_ID=your_app_id
+
 ```
+
+## ▶️ Run Locally
+### Install dependencies
+
+`npm install`
+
+### Start dev server
+`npm run dev`
+
+## 🧩 Architecture Highlights
+
+Redux Toolkit for predictable state management
+
+Caching layer to avoid unnecessary API calls
+
+Derived UI state (no duplicated local state)
+
+Typed hooks (useAppDispatch, useAppSelector)
+
+Separation of concerns (features, components, hooks)
+
+Reusable chart components
+
+Pure functions & clean effects
