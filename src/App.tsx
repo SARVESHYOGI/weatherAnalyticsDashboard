@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { StrictMode, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import { setUser, clearUser } from "./features/auth/authSlice";
 import AppRoutes from "./routes/AppRoutes";
 import type { AppDispatch } from "./app/store";
+import { LingoProvider } from "@lingo.dev/compiler/react";
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,8 +34,12 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <StrictMode>
+      <LingoProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </LingoProvider>
+    </StrictMode>
   );
 }

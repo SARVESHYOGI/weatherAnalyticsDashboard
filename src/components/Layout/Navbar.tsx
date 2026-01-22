@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../app/store";
 import { toggleUnit } from "../../features/settings/settingsSlice";
 import CitySearchBar from "../Search/CitySearchBar";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export default function Navbar() {
   const user = useSelector((s: RootState) => s.auth.user);
@@ -44,7 +45,7 @@ export default function Navbar() {
         >
           {unit === "C" ? "°C" : "°F"}
         </button>
-
+        <LanguageSwitcher />
         {user && (
           <button
             onClick={handleLogout}
